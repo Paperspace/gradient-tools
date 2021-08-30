@@ -2,7 +2,7 @@
 
 ## Scripts for s3 storage providers
 
-## AWS s3 scripts
+### AWS s3 scripts
 
 These scripts require
 1. awscli
