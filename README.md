@@ -15,6 +15,7 @@ Usage: ./create_storage_provider_bucket.sh <storage-provider-bucket-name> [<aws-
 ```
 
 [delete_storage_provider_bucket.sh](delete_storage_provider_bucket.sh)
+
 Note: before deleteing the bucket, you must empty it. This can be done as follows:
 ```
 aws s3 rm s3://gradient-storage-provider-test1 --recursive
