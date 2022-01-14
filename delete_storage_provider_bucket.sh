@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 if [ "$1" = "" ]; then
   echo "usage delete_storage_provider_bucket.sh <bucket-name>"
@@ -22,7 +22,7 @@ aws iam detach-user-policy --user-name ${bucket_user} --policy-arn ${policy_arn}
 
 aws iam delete-policy --policy-arn ${policy_arn}
 
-rm ${policy_file} > /dev/null 2>$1
+rm ${policy_file} > /dev/null 2>&1 || true
 
 aws s3api delete-bucket-cors --bucket ${bucket_name}
 

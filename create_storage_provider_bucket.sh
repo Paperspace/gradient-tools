@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 if [ "$1" = "" ]; then
   echo "usage create_storage_provider_bucket.sh <bucket-name> [<aws-region>]"
@@ -26,7 +26,7 @@ aws iam create-access-key --user-name ${bucket_user}
 echo
 
 echo "Creating bucket ${bucket_name}"
-aws s3api create-bucket --bucket "${bucket_name}" --region us-east-1 
+aws s3api create-bucket --bucket "${bucket_name}" --region $aws_region
 echo
 
 echo "Assigning CORS rules to bucket ${bucket_name}"
