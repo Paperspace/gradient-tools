@@ -8,8 +8,10 @@ fi
 bucket_name=$1
 
 aws_region="us-east-1"
+config_option=""
 if [ "$2" != "" ]; then
   aws_region="$2"
+  config_option="LocationConstraint=${aws_region}"
 fi
 
 # check for aws cli and creds
@@ -25,8 +27,13 @@ echo "Creating access key for user ${bucket_user}"
 aws iam create-access-key --user-name ${bucket_user}
 echo
 
-echo "Creating bucket ${bucket_name}"
-aws s3api create-bucket --bucket "${bucket_name}" --region $aws_region
+if [ "$config_option" = "" ]; then
+  echo "Creating bucket ${bucket_name}"
+  aws s3api create-bucket --bucket "${bucket_name}" --region $aws_region
+else
+  echo "Creating bucket ${bucket_name} in region ${aws_region}"
+  aws s3api create-bucket --bucket "${bucket_name}" --region $aws_region --create-bucket-configuration $config_option
+fi
 echo
 
 echo "Assigning CORS rules to bucket ${bucket_name}"
