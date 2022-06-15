@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 if [ "$1" = "" ]; then
   echo "usage create_storage_provider_bucket.sh <bucket-name> [<aws-region>]"
